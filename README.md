@@ -11,9 +11,9 @@
 
 - [حساب گیت هاب](https://github.com/S-asadi187)
 
-- [رزومه](https://s-asadi187.github.io/s.asadi)
+- [رزومه]( https://s-asadi187.github.io/)
 
-- [SOP](https://github.com/S-asadi187/SOP)
+- [SOP](https://github.com/S-asadi187/SOP/)
 -
 - [Java_certificate](https://github.com/S-asadi187/s-asadi187.github.io/blob/main/java.html)
 - [presentation](https://github.com/S-asadi187/s-asadi187.github.io/blob/main/7.pdf)
