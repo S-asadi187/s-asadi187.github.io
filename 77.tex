@@ -1,0 +1,268 @@
+\documentclass[xcolor=dvipsnames,professionalfonts]{beamer}
+\author{صديقه اسدی}
+\title{فصل7:  مديريت ريسک در توسعه نرم افزار}
+\institute{دانشگاه پیام نور واحد تهران شمال}
+\newcommand{\abs}[1]{\vert #1\vert}
+
+\usepackage{xcolor}
+\usefonttheme{serif}
+\usepackage{tikz}
+
+\usepackage{graphicx}
+\usetheme{Warsaw}
+%\usetheme{AnnArbor}
+
+% در این قسمت می‌توانید رنگ متن را تغییر دهید
+\setbeamercolor{normal text}{fg=black}\usebeamercolor*{normal text}
+
+\usecolortheme[named=blue]{structure}
+
+
+%%از بخش زیر برای تغییر زمینه اسلاید ستفاده کنید.                          
+%\usebackgroundtemplate%
+%{%
+%	\includegraphics[width=\paperwidth,height=\paperheight]{1.jpg}%
+%}
+%\useoutertheme{infolines}
+
+
+%\usepackage{tikz}
+
+\usepackage{xepersian}
+\settextfont{B Roya}
+\setlatintextfont{Arial}
+%\setdigitfont{B Roya}
+
+%\newtheorem{thm}{قضیه}
+%\newtheorem{Def}{تعریف}
+
+
+
+
+%%%%%%%%%%%%%
+\raggedleft
+\makeatletter
+\define@key{beamercolbox}{left}[0pt]{\def\beamer@colbox@rs{0pt}\def\beamer@colbox@ls{#1 plus1fill}}
+\makeatother
+\raggedleft
+
+\makeatletter
+\expandafter\let\csname beamer@@tmpop@itemize item@default\endcsname\relax
+\expandafter\let\csname beamer@@tmpop@itemize subitem@default\endcsname\relax
+\expandafter\let\csname beamer@@tmpop@itemize subsubitem@default\endcsname\relax
+
+\defbeamertemplate*{itemize item}{default}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
+\defbeamertemplate*{itemize subitem}{default}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
+\defbeamertemplate*{itemize subsubitem}{default}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleleft$}}
+
+\bidi@patchcmd{\@listi}{\leftmargin}{\rightmargin}{}{}
+\let\@listI\@listi
+\bidi@patchcmd{\@listii}{\leftmargin}{\rightmargin}{}{}
+\bidi@patchcmd{\@listiii}{\leftmargin}{\rightmargin}{}{}
+\bidi@patchcmd{\beamer@enum@}{\raggedright}{\raggedleft}{}{}
+\bidi@patchcmd{\@@description}{\raggedright}{\raggedleft}{}{}
+\bidi@patchcmd{\@@description}{\leftmargin}{\rightmargin}{}{}
+
+\renewcommand{\itemize}[1][]{%
+\beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
+\ifnum \@itemdepth >2\relax\@toodeep\else
+\advance\@itemdepth\@ne
+\beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+\usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+\usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+\usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+\list
+{\usebeamertemplate{itemize \beameritemnestingprefix item}}
+{\def\makelabel##1{%
+{%
+\hss\llap{{%
+\usebeamerfont*{itemize \beameritemnestingprefix item}%
+\usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+}%
+}%
+}
+\fi%
+\beamer@cramped%
+\raggedleft%
+\beamer@firstlineitemizeunskip%
+}
+\makeatother
+\raggedleft
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+	\frame{\maketitle}
+	\begin{frame}
+	
+		\frametitle{اهداف یادگیری :}
+	
+      \begin{itemize}
+     
+      
+      	
+     	\item فرآیند مدیریت ریسک 
+     	\item ریسک های توسعه نرم افزار   
+     	\item استراتژی های مقابله با ریسک
+     	\item برنامه ریزی برای مقابله با ریسک
+     \end{itemize}
+	\end{frame}
+\begin{frame}
+	
+	\frametitle{ریسک}
+	%\framesubtitle{subtitle}
+				
+	\begin{itemize}
+	
+	    	\item ریسک را می توان به عنوان یک تابع از احتمال تهدید یا منشاء تهدید در نظر گرفت  که به نوعی آسیب پذیری و تاثیرات مخرب تهدید را در پروژه یا سازمان مشخص میکند. \lr{(NIST)}
+	    	\item در استاندارد \lr{ISO} ریسک نرم افزار به عنوان ترکیبی از احتمالات یک واقعه و تاثیرات آن تعریف می گردد.
+	    	\item 
+		تاثیرت منفی ریسک :
+		\begin{itemize}
+			\item ایجاد هزینه های پیش بینی نشده
+			\item 		از دست دادن زمان یا تأخیر در پروژه
+			\item 		کاهش کارایی و کیفیت نرم‌افزار 
+		\end{itemize}
+		\item ریسک ها را نمی توان  حذف کرد ولی می‌توان آنها را مدیریت یا کنترل کرد
+		مدیریت ریسک در مراحل اولیه توسعه نرم‌افزار آغاز می گردد )حتی قبل از امضای قرارداد به منظور به دست آوردن دید کلی از مخاطرات پروژه ( و به عنوان یک فعالیت مستمر درخلال توسعه نرم‌افزار ادامه می‌یابد
+		\item خروجی فرآیند تجزیه و تحلیل ریسک  به تصمیمات مهم مدیریتی منجر می شود و حتی در بعضی از موارد عامل ورود یا عدم ورود به بعضی از پروژه ها می باشد
+		
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	
+	\frametitle{ریسک}
+	%\framesubtitle{subtitle}
+
+	\begin{itemize}
+		
+		\item دو ویژگی ریسک 
+			\begin{itemize}
+			\item عدم قطعیت \lr{uncertainty}  :ممکن است روی بدهد یا ندهد یعنی احتمال وقوع حتمی ریسک وجود ندارد
+			\item 		از دست دادن \lr{Loss} : اگر ریسک به واقعیت تبدیل شود پیامد و پیامدهای ناخواسته و یا مشکلاتی روی خواهد داد 
+			 
+		\end{itemize}
+		\item در فرآیند تحلیل ریسک کمی سازی سطح عدم قطعیت و میزان مشکلات مرتبط با هر ریسک برای اولویت بندی ریسک از درجه اهمیت بالایی برخوردار است .(پرسمن ۲۰۰۹)
+
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=1.1\linewidth]{5}
+		%\caption{}
+		\label{fig:5}
+	\end{figure}
+	
+\end{frame}
+\begin{frame}
+	\frametitle{انواع ریسک ها بر اساس ریشه}
+
+
+
+
+	
+	%\framesubtitle{subtitle}
+	\begin{itemize}
+		\item 	ریسک های داخلی :ریسکهایی که ریشه داخلی یا درون پروژه ای دارند
+		\item 	ریسک های بیرونی : بعضی ریسکها ریشه خارجی دارند و با محیط اجرای پروژه مرتبط می‌باشند 
+		\item 	ریسک های ترکیبی
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{ریسک های خارجی}
+	%\framesubtitle{subtitle}
+	\begin{itemize}
+		\item ریسک های خارجی بسیار متداول هستند :ویروس ها هکرها تغییر شرایط محیطی یا اقتصادی مشکلات مرتبط با مشتری و سازمان مشتری و سایر موارد اشاره کرد 
+		\item صرفا مخصوص یک پروژه یا سازمان مشخص نیست و وقوع آنها تاثیرات فراگیری بر تعداد زیادی از سازمان ها یا پروژه ها خواهد داشت
+		\item 	سازمان ها و پروژه ها توان محدودی در جلوگیری از وقوع این ریسک ها دارند 
+		\item در مدیریت ریسک تمرکز باید بیشتر روی اجتناب، مدیریت و کاهش تاثیرات منفی آنها باشد
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{ریسک های داخلی }
+	%\framesubtitle{subtitle}
+	\begin{itemize}
+		\item عمدتاً ریشه در داخل سازمان یا پروژه دارند مثل استفاده نادرست از داده ها، مشکلات نرم‌افزاری ، اشتباهات پرسنلی و مشکلات مدیریتی 
+		\item عمدتاً مختص سازمان یا پروژه خاصی است که به واسطه عملکرد یا شرایط خاص انجام پروژه ایجاد می گردد 
+		\item با توجه به ریشه داخلی اینگونه ریسک ، مدیریت پروژه یا سازمان فعالیت‌های زیادی از جمله فعالیت‌های پیشگیرانه مدیریت و جذب تاثیرات منفی در رابطه با آنها می‌توانند انجام دهند 
+		\item این ریسک هادرصد بالاتری از مخاطرات پروژه را تشکیل می‌دهند
+		
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{نمونه ریسک های بیرونی}
+	%\framesubtitle{subtitle}
+	 
+	\begin{itemize}
+		\item\textbf{تغییر در مدیریت مشتری} 
+		\\
+		برای اینگونه ریسک ها تیم پروژه نمی‌تواند کاری خاصی برای جلوگیری انجام دهد و برنامه ریزی باید روی مدیریت و کم کردن تاثیرات منفی متمرکز شود
+			\\
+		داشتن یک قرارداد صریح و مدون نیز می‌تواند به این امر کمک کند به این معنا که پروژه به نظرات مدیران کمتر وابسته باشد 
+		\item\textbf{رکود بازار و مشکلات اقتصادی}  
+		\\
+		از این ریسک نیز نمی‌توان جلوگیری کرد و تمرکز باید روی آمادگی برای مدیریت در صورت وقوع باشد
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{نمونه ریسک های داخلی}
+
+	\begin{itemize}
+		\item\textbf{عدم تحقق زمان‌بندی} \\
+		علت: ناشناخته بودن شرایط، برنامه ریزی غلط یا اشتباهات مدیریتی \\
+		مدیریت ریسک  : تجزیه و تحلیل اثرات منفی تاخیرات-جلوگیری از تاخیرات-کم کردن اثرات منفی تاخیرات در صورت وقوع
+		
+		\item\textbf{رد خروجی‌ها از جانب مشتری} \\
+		علت: عدم ارتباط صحیح بین مشتری و مجری انتظارات نابجا و ناآگاهی مشتری 
+		\\مدیریت ریسک : بیشتر روی جلوگیری تمرکز دارد به عبارت دیگر جلوگیری از به وقوع پیوستن -	بهترین فعالیت جلوگیری :ارتباط موثر بین تیم پروژه و مشتری -تعریف درست خروجی‌ها ،گستره و معیارهای پذیرش 
+		
+		\item\textbf{هزینه کردن بیش از برنامه و مشکلات مالی مربوطه}\\ 
+		
+		مدیریت ریسک : برای مقابله با این ریسک تمرکز باید روی جلوگیری( با برنامه ریزی درست و نیز اجرای با دقت مدیریت هزینه در پروژه) باشد
+		
+		\item\textbf{خروج افراد کلیدی از پروژه  } \\
+	مدیریت ریسک : سیاست جلوگیری از رفتن پرسنل کلیدی و تبادل اطلاعات به صورتی که اطلاعات کلیدی فقط در اختیار افراد محدود نباشد از روش‌های مقابله با این ریسک می باشد
+		
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{نمونه ریسک های ترکیبی}
+	%\framesubtitle{subtitle}
+	 
+	
+	
+	
+	\begin{itemize}
+		\item\textbf{تاخیر عامل سوم در ارائه خروجی های مربوطه} \\
+		فعالیت عامل سوم منشاء بیرونی دارد ولی مجری در انتخاب عامل سوم تا حدی آزادی عمل دارد 
+		\\مدیریت ریسک : با انجام  فعالیت های داخلی مثل گنجاندن جریمه های قابل توجه برای تاخیر د و داشتن برنامه های جایگزین و اضطراری\\
+		\item\textbf{عدم آمادگی مشتری در پذیرش و پیاده سازی } \\
+		
+		 مشکلات عمده : تاخیر در پرداخت نهایی به مجری - قفل شدن نیروها در یک پروژه خاص با سربار های مالی مربوطه - احتمال وقوع اختلافات\\
+		این ریسک هم جنبه بیرونی داشته زیرا آمادگی مشتری یک مورد درون‌سازمانی مشتری است و هم دست مجری برای اطمینان از این آمادگی نیز باز است (ریسک ترکیبی)\\
+		مدیریت ریسک : تمرکز باید روی جلوگیری باشد: مشخص کردن و ارتباط پیش فرض ها و انتظارات و کارهایی که باید توسط مشتری انجام گیرد 
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{استراتژی های مقابله با ریسک }
+	3 استراتژی اصلی با توجه به نوع تهدید، تأثیرات ریسک ،احتمال وقوع ریسک و شرایط برای مدیریت ریسک :\\
+	
+	\centering
+			\includegraphics[width=1\linewidth]{۱۲}
+
+
+	
+\end{frame}
+\begin{frame}
+	\frametitle{استراتژی های مقابله با ریسک }
+	استراتژی مقابله یا مدیریت ریسک را می‌توان به استراتژی‌های واکنشی یا پیشگیرانه تقسیم کرد (پرسمن ۲۰۰۹)
+	\\
+	\begin{center}
+		\includegraphics[width=1\linewidth]{13}
+	\end{center}
+	
+\end{frame}
+
+\end{document}
