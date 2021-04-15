@@ -11,7 +11,7 @@
 
 - [حساب گیت هاب](https://github.com/S-asadi187)
 
-- [رزومه]( https://s-asadi187.github.io/)
+- [رزومه]( https://s-asadi187.github.io/s.asadi/)
 
 - [SOP](https://github.com/S-asadi187/SOP/)
 -
