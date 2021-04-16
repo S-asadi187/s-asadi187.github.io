@@ -15,19 +15,18 @@
 
 - [SOP](https://s-asadi187.github.io/SOP/)
 - 
--- [Java_certificate](https://github.com/S-asadi187/s-asadi187.github.io/blob/main/java.html)
+- [Java_certificate](https://github.com/S-asadi187/s-asadi187.github.io/blob/main/java.html)
 - [presentation](https://github.com/S-asadi187/s-asadi187.github.io/blob/main/7.pdf)
 - [Latex](https://github.com/S-asadi187/s-asadi187.github.io/blob/main/77.tex)
 
 -
 ##  بخش عمومی
-- [ارزیابی رزومه و انگیزه نامه](https://github.com/fshekari/PNU_3991_AR/blob/main/_General/FSH_CV_CheckList_AR_3991.pdf)
-- [خلاصه ارزیابی بخش عمومی](https://github.com/fshekari/PNU_3991_AR/blob/main/_General/FSH_GeneralSection_CheckList_AR_3991.pdf)
+
 
 
 ##  بخش دروس ارشد
 
-- [خلاصه ارزیابی درس_مدیریت پروژه های نرم افزاری](https://github.com/fshekari/PNU_3991_AR/blob/main/SoftwareManagement/FSH_SoftwareProjectManagement_CheckList_AR_3991.pdf)
+
 
 -------------------
 ## سیاهه ارزشیابی درس
